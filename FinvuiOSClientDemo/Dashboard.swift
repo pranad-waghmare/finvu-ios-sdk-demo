@@ -6,6 +6,8 @@ struct Dashboard: View {
     @State var linkedAccountsResponse: LinkedAccountsResponse?
     @State private var navigateToProcessConsent = false
     @State private var navigateToAddAccount = false
+    @State private var consentId: String = "d5ec2f85-9313-4b1c-b97a-d110d073e18b"
+    @State private var showAlert: Bool = false
     private var finvuManager = FinvuManager.shared
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -64,11 +66,37 @@ struct Dashboard: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.bordered)
+                
+                Text("Revoke Consent")
+                TextField("Consent ID", text: $consentId)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.horizontal)
+
+                            Button(action: {
+                                finvuManager.revokeConsent(consentId: consentId, accountAggregator: nil, fipDetails: nil){ error in
+                                    if let error = error {
+                                        print("Error revoking consent: \(error)")
+                                        return
+                                    }
+                                    showAlert = true
+                                }
+                            }) {
+                                Text("Submit")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .padding(.horizontal)
             }
             .padding(16)
         }
         .onAppear {
             refreshLinkedAccounts()
+        }.alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Consent Revoked"),
+                message: Text("The consent has been successfully revoked."),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
     

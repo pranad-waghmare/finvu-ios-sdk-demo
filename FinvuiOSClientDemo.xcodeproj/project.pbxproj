@@ -14,12 +14,11 @@
 		6FD2265B2C89B2D70073159E /* FinvuiOSClientDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2265A2C89B2D70073159E /* FinvuiOSClientDemoApp.swift */; };
 		6FD2265F2C89B2D80073159E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FD2265E2C89B2D80073159E /* Assets.xcassets */; };
 		6FD226622C89B2D80073159E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FD226612C89B2D80073159E /* Preview Assets.xcassets */; };
-		8DD14F471A902DF33B5B94EE /* Pods_FinvuiOSClientDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F24DA6DF3152B04F12FBC87 /* Pods_FinvuiOSClientDemo.framework */; };
+		CB9741A744777476D8C1C9D9 /* Pods_FinvuiOSClientDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA701F72C52F52BC492A92CC /* Pods_FinvuiOSClientDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F24DA6DF3152B04F12FBC87 /* Pods_FinvuiOSClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinvuiOSClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		51215130AA547E74B11C6B96 /* Pods-FinvuiOSClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinvuiOSClientDemo.debug.xcconfig"; path = "Target Support Files/Pods-FinvuiOSClientDemo/Pods-FinvuiOSClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		1AA7A14C751C24F30A1E999A /* Pods-FinvuiOSClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinvuiOSClientDemo.release.xcconfig"; path = "Target Support Files/Pods-FinvuiOSClientDemo/Pods-FinvuiOSClientDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6F48E8202D65B0510078DB29 /* AccountDiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDiscoveryView.swift; sourceTree = "<group>"; };
 		6F48E8212D65B0510078DB29 /* ConsentsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentsHomeView.swift; sourceTree = "<group>"; };
 		6F48E8222D65B0510078DB29 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -28,7 +27,8 @@
 		6FD2265A2C89B2D70073159E /* FinvuiOSClientDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinvuiOSClientDemoApp.swift; sourceTree = "<group>"; };
 		6FD2265E2C89B2D80073159E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FD226612C89B2D80073159E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FA5AFADDD78B3437D10A73C9 /* Pods-FinvuiOSClientDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinvuiOSClientDemo.release.xcconfig"; path = "Target Support Files/Pods-FinvuiOSClientDemo/Pods-FinvuiOSClientDemo.release.xcconfig"; sourceTree = "<group>"; };
+		7FA7145F6072D7939880B517 /* Pods-FinvuiOSClientDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinvuiOSClientDemo.debug.xcconfig"; path = "Target Support Files/Pods-FinvuiOSClientDemo/Pods-FinvuiOSClientDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		BA701F72C52F52BC492A92CC /* Pods_FinvuiOSClientDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinvuiOSClientDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD14F471A902DF33B5B94EE /* Pods_FinvuiOSClientDemo.framework in Frameworks */,
+				CB9741A744777476D8C1C9D9 /* Pods_FinvuiOSClientDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,8 +46,8 @@
 		2E66C685D15E1B5C7B0AF259 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				51215130AA547E74B11C6B96 /* Pods-FinvuiOSClientDemo.debug.xcconfig */,
-				FA5AFADDD78B3437D10A73C9 /* Pods-FinvuiOSClientDemo.release.xcconfig */,
+				7FA7145F6072D7939880B517 /* Pods-FinvuiOSClientDemo.debug.xcconfig */,
+				1AA7A14C751C24F30A1E999A /* Pods-FinvuiOSClientDemo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -58,7 +58,7 @@
 				6FD226592C89B2D70073159E /* FinvuiOSClientDemo */,
 				6FD226582C89B2D70073159E /* Products */,
 				2E66C685D15E1B5C7B0AF259 /* Pods */,
-				99F6A697BE9E213ADFBC3194 /* Frameworks */,
+				A1DF483FCCC42181737DD0A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,10 +92,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		99F6A697BE9E213ADFBC3194 /* Frameworks */ = {
+		A1DF483FCCC42181737DD0A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4F24DA6DF3152B04F12FBC87 /* Pods_FinvuiOSClientDemo.framework */,
+				BA701F72C52F52BC492A92CC /* Pods_FinvuiOSClientDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,11 +107,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6FD226652C89B2D80073159E /* Build configuration list for PBXNativeTarget "FinvuiOSClientDemo" */;
 			buildPhases = (
-				E8E4B6B7BC82E4AFABFA7BAE /* [CP] Check Pods Manifest.lock */,
+				5F7CDB5494E669F286EE2EBE /* [CP] Check Pods Manifest.lock */,
 				6FD226532C89B2D70073159E /* Sources */,
 				6FD226542C89B2D70073159E /* Frameworks */,
 				6FD226552C89B2D70073159E /* Resources */,
-				952527B9F3E542253CA345FD /* [CP] Embed Pods Frameworks */,
+				5E06BFF9725EDE104B201C54 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,7 +168,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		952527B9F3E542253CA345FD /* [CP] Embed Pods Frameworks */ = {
+		5E06BFF9725EDE104B201C54 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,7 +185,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FinvuiOSClientDemo/Pods-FinvuiOSClientDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E8E4B6B7BC82E4AFABFA7BAE /* [CP] Check Pods Manifest.lock */ = {
+		5F7CDB5494E669F286EE2EBE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,7 +346,7 @@
 		};
 		6FD226662C89B2D80073159E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51215130AA547E74B11C6B96 /* Pods-FinvuiOSClientDemo.debug.xcconfig */;
+			baseConfigurationReference = 7FA7145F6072D7939880B517 /* Pods-FinvuiOSClientDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -376,7 +376,7 @@
 		};
 		6FD226672C89B2D80073159E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA5AFADDD78B3437D10A73C9 /* Pods-FinvuiOSClientDemo.release.xcconfig */;
+			baseConfigurationReference = 1AA7A14C751C24F30A1E999A /* Pods-FinvuiOSClientDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
