@@ -20,7 +20,8 @@ struct LoginView: View {
     
     // Constants
     static let consentHandleIds = [
-            "ee793531-620b-40f4-a76b-9af3d065ead9",
+            // enter consent handle id or ids in this array
+            "",
     ]
     
     init() {
@@ -131,35 +132,7 @@ struct LoginView: View {
                                consentHandleId: consentHandleId) { response, error in
             DispatchQueue.main.async {
                 isRetryingLogin = false
-                
-                if let error = error {
-                    print("Login error: \(error.localizedDescription)")
-                    
-                    // Check if it's error code 1002 and we haven't retried yet
-                    if error.code == 1002 && !hasRetriedOnce {
-                        print("SNA failed with error 1002, retrying login automatically...")
-                        hasRetriedOnce = true
-                        isRetryingLogin = true
-                        
-                        // Call finvuManager.login directly (no recursion)
-                        finvuManager.loginWith(username: username,
-                                               mobileNumber: mobileNumber,
-                                               consentHandleId: consentHandleId) { retryResponse, retryError in
-                            DispatchQueue.main.async {
-                                isRetryingLogin = false
-                                handleLoginResponse(response: retryResponse, error: retryError)
-                            }
-                        }
-                        return
-                    }
-                    
-                    // Show error if it's not 1002 or we've already retried
-                    errorMessage = error.localizedDescription
-                    showError = true
-                    return
-                }
-                
-                handleLoginResponse(response: response, error: nil)
+                handleLoginResponse(response: response, error: error)
             }
         }
     }
