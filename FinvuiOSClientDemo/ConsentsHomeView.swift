@@ -93,7 +93,10 @@ struct ConsentsHomeView: View {
         finvuManager.fetchLinkedAccounts { result, error in
             
             if let error = error {
-                print("Could not get linked accounts error=\(error)")
+                let errorCode = error.errorCode
+                let errorMessage = error.errorMessage
+                let localized = error.localizedDescription
+                print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                 return
             }
             
@@ -104,7 +107,10 @@ struct ConsentsHomeView: View {
     private func getConsentDetails(consentHandleId: String) {
         finvuManager.getConsentRequestDetails(consentHandleId: consentHandleId) { response, error in
             if let error = error {
-                print("Could not fetch pending consents error=\(error)")
+                let errorCode = error.errorCode
+                let errorMessage = error.errorMessage
+                let localized = error.localizedDescription
+                print("FinvuManager.getConsentRequestDetails - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                 return
             }
             
@@ -171,7 +177,10 @@ struct ConsentsHomeView: View {
                                                       linkedAccounts: [account]) { result, error in
                 DispatchQueue.main.async {
                     if let error = error {
-                        print("Could not approve consent request error=\(error)")
+                        let errorCode = error.errorCode
+                        let errorMessage = error.errorMessage
+                        let localized = error.localizedDescription
+                        print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                         return
                     }
                     
@@ -188,7 +197,10 @@ struct ConsentsHomeView: View {
                                                   linkedAccounts: Array(selectedAccounts)) { result, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Could not approve consent request error=\(error)")
+                    let errorCode = error.errorCode
+                    let errorMessage = error.errorMessage
+                    let localized = error.localizedDescription
+                    print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                     return
                 }
                 // navigate back to previous view
@@ -199,7 +211,10 @@ struct ConsentsHomeView: View {
     private func denyConsent() {
         finvuManager.denyAccountConsentRequest(consentDetail: consentDetailList[LoginView.consentHandleIds[0]]!){ result, error in
             if let error = error {
-                print("Could not approve consent request error=\(error)")
+                let errorCode = error.errorCode
+                let errorMessage = error.errorMessage
+                let localized = error.localizedDescription
+                print("FinvuManager.denyAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                 return
             }
             // navigate back to previous view

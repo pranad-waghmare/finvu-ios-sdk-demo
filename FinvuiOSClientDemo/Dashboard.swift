@@ -75,7 +75,10 @@ struct Dashboard: View {
                             Button(action: {
                                 finvuManager.revokeConsent(consentId: consentId, accountAggregator: nil, fipDetails: nil){ error in
                                     if let error = error {
-                                        print("Error revoking consent: \(error)")
+                                        let errorCode = error.errorCode
+                                        let errorMessage = error.errorMessage
+                                        let localized = error.localizedDescription
+                                        print("FinvuManager.revokeConsent - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                                         return
                                     }
                                     showAlert = true
@@ -103,7 +106,10 @@ struct Dashboard: View {
     func refreshLinkedAccounts() {
         finvuManager.fetchLinkedAccounts { result, error in
             if let error = error {
-                print("Got error when fetching accounts error=\(error)")
+                let errorCode = error.errorCode
+                let errorMessage = error.errorMessage
+                let localized = error.localizedDescription
+                print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
                 return
             }
             
