@@ -2,6 +2,8 @@ import Foundation
 import FinvuSDK
 import SwiftUI
 
+private let errorMessageConstant = "something went wrong"
+
 // View to list available FIPs
 struct AccountDiscoveryView: View {
     @State var results = [FIPInfo]()
@@ -20,7 +22,7 @@ struct AccountDiscoveryView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.fipsAllFIPOptions - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                    print("FinvuManager.fipsAllFIPOptions - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                     return
                 }
                 results = response?.searchOptions ?? []
@@ -67,7 +69,7 @@ struct FIPDetailsView: View {
                         let errorCode = error.errorCode
                         let errorMessage = error.errorMessage
                         let localized = error.localizedDescription
-                        print("FinvuManager.discoverAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                        print("FinvuManager.discoverAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                         return
                     }
                     discoveredAccountsResponse = response
@@ -116,7 +118,7 @@ struct FIPDetailsView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.fetchFIPDetails - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                    print("FinvuManager.fetchFIPDetails - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                     return
                 }
                 fipDetails = details
@@ -127,7 +129,7 @@ struct FIPDetailsView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.getEntityInfo - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                    print("FinvuManager.getEntityInfo - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                     return
                 }
                 self.entityInfo = entityInfo
@@ -139,7 +141,7 @@ struct FIPDetailsView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                    print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                     return
                 }
                 linkedAccountIdentifiers = Set(result?.linkedAccounts?.map { $0.accountReferenceNumber } ?? [])
@@ -171,8 +173,8 @@ struct AccountDiscoveryResultView: View {
                         let errorCode = error.errorCode
                         let errorMessage = error.errorMessage
                         let localized = error.localizedDescription
-                        print("FinvuManager.linkAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
-                        self.errorMessage = "Error linking accounts: \(localized)"
+                        print("FinvuManager.linkAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                        self.errorMessage = "Error linking accounts: \(localized.isEmpty ? errorMessageConstant : localized)"
                         self.showErrorDialog = true
                         return
                     }
@@ -190,8 +192,8 @@ struct AccountDiscoveryResultView: View {
                                 let errorCode = error.errorCode
                                 let errorMessage = error.errorMessage
                                 let localized = error.localizedDescription
-                                print("FinvuManager.confirmAccountLinking - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
-                                self.errorMessage = "Error confirming account linking: \(localized)"
+                                print("FinvuManager.confirmAccountLinking - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                                self.errorMessage = "Error confirming account linking: \(localized.isEmpty ? errorMessageConstant : localized)"
                                 self.showErrorDialog = true
                                 return
                             }

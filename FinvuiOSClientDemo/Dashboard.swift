@@ -2,6 +2,8 @@ import Foundation
 import SwiftUI
 import FinvuSDK
 
+private let errorMessageConstant = "something went wrong"
+
 struct Dashboard: View {
     @State var linkedAccountsResponse: LinkedAccountsResponse?
     @State private var navigateToProcessConsent = false
@@ -78,7 +80,7 @@ struct Dashboard: View {
                                         let errorCode = error.errorCode
                                         let errorMessage = error.errorMessage
                                         let localized = error.localizedDescription
-                                        print("FinvuManager.revokeConsent - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                                        print("FinvuManager.revokeConsent - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                                         return
                                     }
                                     showAlert = true
@@ -109,7 +111,7 @@ struct Dashboard: View {
                 let errorCode = error.errorCode
                 let errorMessage = error.errorMessage
                 let localized = error.localizedDescription
-                print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                 return
             }
             

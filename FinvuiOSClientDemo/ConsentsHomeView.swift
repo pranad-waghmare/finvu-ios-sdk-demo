@@ -2,6 +2,8 @@ import Foundation
 import SwiftUI
 import FinvuSDK
 
+private let errorMessageConstant = "something went wrong"
+
 struct ConsentsHomeView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -96,7 +98,7 @@ struct ConsentsHomeView: View {
                 let errorCode = error.errorCode
                 let errorMessage = error.errorMessage
                 let localized = error.localizedDescription
-                print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                print("FinvuManager.fetchLinkedAccounts - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                 return
             }
             
@@ -110,7 +112,7 @@ struct ConsentsHomeView: View {
                 let errorCode = error.errorCode
                 let errorMessage = error.errorMessage
                 let localized = error.localizedDescription
-                print("FinvuManager.getConsentRequestDetails - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                print("FinvuManager.getConsentRequestDetails - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                 return
             }
             
@@ -180,7 +182,7 @@ struct ConsentsHomeView: View {
                         let errorCode = error.errorCode
                         let errorMessage = error.errorMessage
                         let localized = error.localizedDescription
-                        print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                        print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                         return
                     }
                     
@@ -200,7 +202,7 @@ struct ConsentsHomeView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                    print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                     return
                 }
                 // navigate back to previous view
@@ -214,7 +216,7 @@ struct ConsentsHomeView: View {
                 let errorCode = error.errorCode
                 let errorMessage = error.errorMessage
                 let localized = error.localizedDescription
-                print("FinvuManager.denyAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
+                print("FinvuManager.denyAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                 return
             }
             // navigate back to previous view

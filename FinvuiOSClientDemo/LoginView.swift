@@ -1,6 +1,8 @@
 import SwiftUI
 import FinvuSDK
 
+private let errorMessageConstant = "something went wrong"
+
 struct LoginView: View {
     let finvuManager = FinvuManager.shared
     let finvuClientConfig: FinvuClientConfig
@@ -112,8 +114,8 @@ struct LoginView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.connect - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
-                    self.errorMessage = "Connection failed: \(localized)"
+                    print("FinvuManager.connect - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                    self.errorMessage = "Connection failed: \(localized.isEmpty ? errorMessageConstant : localized)"
                     self.showError = true
                     return
                 }
@@ -146,8 +148,8 @@ struct LoginView: View {
             let errorCode = error.errorCode
             let errorMessage = error.errorMessage
             let localized = error.localizedDescription
-            print("FinvuManager.loginWith - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
-            self.errorMessage = localized
+            print("FinvuManager.loginWith - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+            self.errorMessage = localized.isEmpty ? errorMessageConstant : localized
             self.showError = true
             return
         }
@@ -182,8 +184,8 @@ struct LoginView: View {
                     let errorCode = error.errorCode
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
-                    print("FinvuManager.verifyLoginOtp - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? "nil"), Localized: \(localized)")
-                    self.errorMessage = localized
+                    print("FinvuManager.verifyLoginOtp - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                    self.errorMessage = localized.isEmpty ? errorMessageConstant : localized
                     self.showError = true
                     return
                 }
