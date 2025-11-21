@@ -175,7 +175,8 @@ struct ConsentsHomeView: View {
     
     private func splitConsentFlow() {
         selectedAccounts.enumerated().forEach { index, account in
-            finvuManager.approveAccountConsentRequest(consentDetail: consentDetailList[LoginView.consentHandleIds[index]]!,
+            let consentHandleId = LoginView.consentHandleIds[index]
+            finvuManager.approveAccountConsentRequest(consentDetail: consentDetailList[consentHandleId]!,
                                                       linkedAccounts: [account]) { result, error in
                 DispatchQueue.main.async {
                     if let error = error {
@@ -183,8 +184,11 @@ struct ConsentsHomeView: View {
                         let errorMessage = error.errorMessage
                         let localized = error.localizedDescription
                         print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                        callGetConsentHandleStatus(handleId: consentHandleId)
                         return
                     }
+                    
+                    callGetConsentHandleStatus(handleId: consentHandleId)
                     
                     if index == selectedAccounts.count - 1 {
                         presentationMode.wrappedValue.dismiss()
@@ -195,7 +199,8 @@ struct ConsentsHomeView: View {
     }
     
     private func multiConsentFlow() {
-        finvuManager.approveAccountConsentRequest(consentDetail: consentDetailList[LoginView.consentHandleIds[0]]!,
+        let consentHandleId = LoginView.consentHandleIds[0]
+        finvuManager.approveAccountConsentRequest(consentDetail: consentDetailList[consentHandleId]!,
                                                   linkedAccounts: Array(selectedAccounts)) { result, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -203,25 +208,49 @@ struct ConsentsHomeView: View {
                     let errorMessage = error.errorMessage
                     let localized = error.localizedDescription
                     print("FinvuManager.approveAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                    callGetConsentHandleStatus(handleId: consentHandleId)
                     return
                 }
+                callGetConsentHandleStatus(handleId: consentHandleId)
                 // navigate back to previous view
                 presentationMode.wrappedValue.dismiss()
             }
         }
     }
     private func denyConsent() {
-        finvuManager.denyAccountConsentRequest(consentDetail: consentDetailList[LoginView.consentHandleIds[0]]!){ result, error in
+        let consentHandleId = LoginView.consentHandleIds[0]
+        finvuManager.denyAccountConsentRequest(consentDetail: consentDetailList[consentHandleId]!){ result, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    let errorCode = error.errorCode
+                    let errorMessage = error.errorMessage
+                    let localized = error.localizedDescription
+                    print("FinvuManager.denyAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                    callGetConsentHandleStatus(handleId: consentHandleId)
+                    return
+                }
+                callGetConsentHandleStatus(handleId: consentHandleId)
+                // navigate back to previous view
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
+    
+    private func callGetConsentHandleStatus(handleId: String) {
+        finvuManager.getConsentHandleStatus(handleId: handleId) { response, error in
             if let error = error {
                 let errorCode = error.errorCode
                 let errorMessage = error.errorMessage
                 let localized = error.localizedDescription
-                print("FinvuManager.denyAccountConsentRequest - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                print("FinvuManager.getConsentHandleStatus - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
                 return
             }
-            // navigate back to previous view
-            presentationMode.wrappedValue.dismiss()
             
+            if let response = response {
+                print("FinvuManager.getConsentHandleStatus - Success: Status = \(response.status)")
+            } else {
+                print("FinvuManager.getConsentHandleStatus - Success: No response data")
+            }
         }
     }}
 
