@@ -1,6 +1,8 @@
 import SwiftUI
 import FinvuSDK
 
+private let errorMessageConstant = "something went wrong"
+
 struct LoginView: View {
     let finvuManager = FinvuManager.shared
     let finvuClientConfig: FinvuClientConfig
@@ -109,8 +111,12 @@ struct LoginView: View {
         finvuManager.connect { error in
             DispatchQueue.main.async {
                 if let error = error {
-                    errorMessage = "Connection failed: \(error.localizedDescription)"
-                    showError = true
+                    let errorCode = error.errorCode
+                    let errorMessage = error.errorMessage
+                    let localized = error.localizedDescription
+                    print("FinvuManager.connect - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                    self.errorMessage = "Connection failed: \(localized.isEmpty ? errorMessageConstant : localized)"
+                    self.showError = true
                     return
                 }
                 print("Connected successfully")
@@ -139,9 +145,12 @@ struct LoginView: View {
     
     private func handleLoginResponse(response: LoginOtpReference?, error: NSError?) {
         if let error = error {
-            print("Login error: \(error.localizedDescription)")
-            errorMessage = error.localizedDescription
-            showError = true
+            let errorCode = error.errorCode
+            let errorMessage = error.errorMessage
+            let localized = error.localizedDescription
+            print("FinvuManager.loginWith - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+            self.errorMessage = localized.isEmpty ? errorMessageConstant : localized
+            self.showError = true
             return
         }
         
@@ -172,8 +181,12 @@ struct LoginView: View {
         finvuManager.verifyLoginOtp(otp: otp, otpReference: reference) { response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    errorMessage = error.localizedDescription
-                    showError = true
+                    let errorCode = error.errorCode
+                    let errorMessage = error.errorMessage
+                    let localized = error.localizedDescription
+                    print("FinvuManager.verifyLoginOtp - Error Code: \(errorCode ?? "nil"), Error Message: \(errorMessage ?? errorMessageConstant), Localized: \(localized.isEmpty ? errorMessageConstant : localized)")
+                    self.errorMessage = localized.isEmpty ? errorMessageConstant : localized
+                    self.showError = true
                     return
                 }
                 
